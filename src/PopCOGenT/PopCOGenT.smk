@@ -219,7 +219,7 @@ rule musgy_format_input:
         import length_bias_functions
 
         length_bias_functions.rename_for_mugsy(
-            "{input.g1}", "{input.g2}", "{params.g1}"
+            "{input.g1}", "{output.g1}", "{params.g1}"
         )
         \n!EOF!
         """

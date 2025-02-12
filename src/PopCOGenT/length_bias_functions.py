@@ -373,7 +373,7 @@ def get_filtered_subblocks(sequence_1, sequence_2, positions_to_remove):
     start and end positions to remove
     """
     if len(positions_to_remove) == 0:
-        return [(sequence_1, sequence_2)]
+        yield sequence_1, sequence_2
     final_blocks = []
     initial_start = 0
     for end, start in sorted(
@@ -400,8 +400,9 @@ def merge_intervals(intervals: List[Tuple[int, int]]):
     >>> merge_intervals(sorted([(3, 1), (4, 1)], reverse=True))
     [(4, 1)]
     """
-    all_intervals = []
-    current_interval = intervals[0]
+    if not intervals:
+        return []
+    all_intervals, current_interval = [], intervals[0]
     for j, interval in enumerate(intervals[1:]):
         end, start = interval
         if current_interval[1] <= end:
